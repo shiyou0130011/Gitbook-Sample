@@ -38,10 +38,9 @@ jobs:
 
     - name: move book bsck to repository folder
       run: |
-        if [ ! -d book ]; then
-        git rm -r book/*
+        if [ ! -d book ]; then; git rm -r book/*; fi
         mv /tmp/book $PWD
-        end
+        
     
     - name: copy book data
       env:
