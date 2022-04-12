@@ -1,0 +1,59 @@
+name: auto-generate-gitbook
+on:                               
+  push:
+    branches:
+    - main
+
+jobs:
+  main-to-gh-pages:
+    runs-on: ubuntu-latest
+        
+    steps:                          
+    - name: checkout master
+      uses: actions/checkout@v2
+      with:
+        ref: master
+            
+    - name: install nodejs
+      uses: actions/setup-node@v1
+      
+    - name: configue gitbook
+      run: |
+        npm install -g gitbook-cli          
+        gitbook install
+        npm install -g gitbook-summary
+                
+    - name: generate book folder
+      run: |
+        book sm
+        gitbook build
+        rm -rf ./_book/.github/workflows
+
+    - run: mv _book /tmp/book
+
+    - name: checkout gh-pages
+      uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+
+    - name: move book bsck to repository folder
+      run: |
+        git rm -r book/*
+        # mv book /tmp/_book_old
+        ls
+        mv /tmp/book $PWD
+        ls
+    
+    - name: copy book data
+      env:
+        TOKEN: ${{secrets.ACCESS_TOKEN}}
+        REF: github.com/${{github.repository}}
+        MYEMAIL: ${{secrets.EMAIL}} # E-Mail 不公開，存於 Actions secrets
+        MYNAME: ${{github.repository_owner}}   
+      run: |
+        git config --global user.email "${MYEMAIL}"
+        git config --global user.name "${MYNAME}"
+        git add *
+        git commit -m "update book (Commit: ${{ github.event.head_commit.id }}; Message: ${{ github.event.head_commit.message }}) at `date`"
+        git push --force --quiet "https://${TOKEN}@${REF}" 
+
