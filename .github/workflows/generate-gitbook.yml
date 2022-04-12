@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
         
     steps:                          
-    - name: checkout master
+    - name: checkout main
       uses: actions/checkout@v2
       with:
-        ref: master
+        ref: main
             
     - name: install nodejs
       uses: actions/setup-node@v1
