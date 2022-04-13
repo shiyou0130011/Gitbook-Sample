@@ -4,4 +4,4 @@
 
 ## code
 
-{% include "datas/helloworld.md"%}
+{% include "datas/helloworld.go"%}
