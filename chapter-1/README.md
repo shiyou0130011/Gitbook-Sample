@@ -3,9 +3,9 @@
 ## Aenean Ultricies
 
 Etiam dignissim dui imperdiet elit sodales, vel mollis felis elementum. Sed accumsan lacus ut mauris mattis, vel blandit tellus consequat. Nam eget nunc at eros imperdiet pellentesque.
-In at mi bibendum, lacinia libero eget, mattis justo.
+*In at mi bibendum, lacinia libero eget, mattis justo.*
 
-Cras eget ex vestibulum, viverra lectus quis, molestie est. Morbi mattis nisi non risus mattis finibus.
+Cras eget ex vestibulum, **viverra lectus** quis, molestie est. Morbi mattis nisi non risus mattis finibus.
 
 ### Maecenas Quisque
 
