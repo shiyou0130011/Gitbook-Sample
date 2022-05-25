@@ -21,7 +21,7 @@ jobs:
         git clone https://github.com/shiyou0130011/gbook.git /tmp/_gbook
         cd /tmp/_gbook
         go get
-        go build exec/main.go -o /tmp/gbook-cli
+        go build -o /tmp/gbook-cli exec/main.go 
         cd ${{ env.GITHUB_ACTION_PATH }}
     
     - name: checkout source
