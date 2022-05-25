@@ -39,10 +39,7 @@ jobs:
         ref: gh-pages
         
     - name: Move compiled file
-      run: |
-        ls -l $RUNNER_TEMP
-        chmod 755 $RUNNER_TEMP/gbook
-        mv $RUNNER_TEMP/gbook $PWD
+      run:  mv $RUNNER_TEMP/gbook $PWD
       
     
     - name: copy book data
