@@ -6,7 +6,7 @@ on:
 
 jobs:
 
-  build:
+  generate:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -18,10 +18,10 @@ jobs:
         
     - name: get GBook
       run: |
-        git clone https://github.com/shiyou0130011/gbook.git /tmp/_gbook
-        cd /tmp/_gbook
+        git clone https://github.com/shiyou0130011/gbook.git $RUNNER_TEMP/_gbook
+        cd $RUNNER_TEMP/_gbook
         go get
-        go build -o /tmp/gbook-cli exec/main.go 
+        go build -o $RUNNER_TEMP/gbook-cli exec/main.go 
         cd $GITHUB_ACTION_PATH
     
     - name: checkout source
@@ -30,7 +30,7 @@ jobs:
         ref: main
 
     - name: Build
-      run: /tmp/gbook-cli -f $PWD -out "/tmp/gbook" -title "Gitbook Sample"
+      run: $RUNNER_TEMP/gbook-cli -f $PWD -out "$RUNNER_TEMP/gbook" -title "Gitbook Sample"
         
 
     - name: checkout gh-pages
@@ -40,8 +40,8 @@ jobs:
         
     - name: Move compiled file
       run: |
-        ls -l /tmp/gbook
-        mv /tmp/gbook $PWD
+        ls -l $RUNNER_TEMP
+        mv $RUNNER_TEMP/gbook $PWD
       
     
     - name: copy book data
