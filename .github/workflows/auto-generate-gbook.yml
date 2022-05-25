@@ -7,7 +7,7 @@ on:
 jobs:
 
   generate:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
 
@@ -41,6 +41,7 @@ jobs:
     - name: Move compiled file
       run: |
         ls -l $RUNNER_TEMP
+        chmod 755 $RUNNER_TEMP/gbook
         mv $RUNNER_TEMP/gbook $PWD
       
     
