@@ -22,7 +22,7 @@ jobs:
         cd /tmp/_gbook
         go get
         go build -o /tmp/gbook-cli exec/main.go 
-        cd ${{ env.GITHUB_ACTION_PATH }}
+        cd $GITHUB_ACTION_PATH
     
     - name: checkout source
       uses: actions/checkout@v2
@@ -30,8 +30,7 @@ jobs:
         ref: main
 
     - name: Build
-      run: |
-        /tmp/gbook-cli -f $PWD -out "/tmp/gbook" -title "Gitbook Sample"
+      run: /tmp/gbook-cli -f $PWD -out "/tmp/gbook" -title "Gitbook Sample"
         
 
     - name: checkout gh-pages
@@ -39,7 +38,7 @@ jobs:
       with:
         ref: gh-pages
         
-    - name: Test
+    - name: Move compiled file
       run: mv /tmp/gbook $PWD
       
     
