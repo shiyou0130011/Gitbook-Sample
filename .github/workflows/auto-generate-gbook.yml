@@ -1,0 +1,57 @@
+name: auto-generate-gbook
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.18
+        
+    - name: get GBook
+      run: |
+        git clone https://github.com/shiyou0130011/gbook.git /tmp/_gbook
+        cd /tmp/_gbook
+        go get
+        go build exec/main.go -o /tmp/gbook-cli
+        cd ${{ env.GITHUB_ACTION_PATH }}
+    
+    - name: checkout source
+      uses: actions/checkout@v2
+      with:
+        ref: main
+
+    - name: Build
+      run: |
+        /tmp/gbook-cli -f $PWD -out "/tmp/gbook" -title "Gitbook Sample"
+        
+
+    - name: checkout gh-pages
+      uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+        
+    - name: Test
+      run: mv /tmp/gbook $PWD
+      
+    
+    - name: copy book data
+      env:
+        TOKEN: ${{secrets.ACCESS_TOKEN}}
+        REF: github.com/${{github.repository}}
+        MYEMAIL: ${{secrets.EMAIL}} # E-Mail 不公開，存於 Actions secrets
+        MYNAME: ${{github.repository_owner}}   
+      run: |
+        git config --global user.email "${MYEMAIL}"
+        git config --global user.name "${MYNAME}"
+        git add *
+        git commit -m "update book (GBook; Commit: ${{ github.event.head_commit.id }}; Message: ${{ github.event.head_commit.message }}) at `date`"
+        git push --force --quiet "https://${TOKEN}@${REF}" 
