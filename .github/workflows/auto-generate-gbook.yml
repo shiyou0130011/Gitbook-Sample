@@ -39,7 +39,9 @@ jobs:
         ref: gh-pages
         
     - name: Move compiled file
-      run: mv /tmp/gbook $PWD
+      run: |
+        ls -l /tmp/gbook
+        mv /tmp/gbook $PWD
       
     
     - name: copy book data
