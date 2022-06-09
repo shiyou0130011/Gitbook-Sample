@@ -33,6 +33,14 @@ func main() {
 
 ## Table usage
 
+### Style 1
+
+```
+| Integer nec lacus dictum  | pharetra dolor nec           | maximus leo.            |
+|---------------------------|------------------------------|-------------------------|
+| Aenean pellentesque sem   | sit amet dolor               | semper aliquet.         |
+```
+
 | Integer nec lacus dictum  | pharetra dolor nec           | maximus leo.            |
 |---------------------------|------------------------------|-------------------------|
 | Aenean pellentesque sem   | sit amet dolor               | semper aliquet.         |
@@ -45,3 +53,25 @@ func main() {
 | Suspendisse ac urna       | at dolor consequat           | aliquam.                |
 | Phasellus quis dolor      | luctus, dignissim leo        | porta, fringilla ex.    |
 | Aliquam ac nisl           | congue, fringilla            | diam eu, lobortis arcu. |
+
+
+### style 2
+
+```
+ Integer nec lacus dictum  | pharetra dolor nec           | maximus leo.            
+---------------------------|------------------------------|-------------------------
+ Aenean pellentesque sem   | sit amet dolor               | semper aliquet.         
+ ```
+
+Integer nec lacus dictum  | pharetra dolor nec           | maximus leo.            
+--------------------------|------------------------------|-------------------------
+Aenean pellentesque sem   | sit amet dolor               | semper aliquet.         
+Nunc sed orci             | et nulla dignissim           | imperdiet.              
+In consequat              | risus et tempus              | rutrum.                 
+Maecenas ac enim pulvinar | sagittis purus rutrum        | ullamcorper lorem.      
+Maecenas vehicula         | dui a libero                 | aliquam blandit.        
+Maecenas consequat        | ipsum quis ante              | maximus elementum.      
+Fusce                     | condimentum neque eget massa | faucibus hendrerit.     
+Suspendisse ac urna       | at dolor consequat           | aliquam.                
+Phasellus quis dolor      | luctus, dignissim leo        | porta, fringilla ex.    
+Aliquam ac nisl           | congue, fringilla            | diam eu, lobortis arcu. 
