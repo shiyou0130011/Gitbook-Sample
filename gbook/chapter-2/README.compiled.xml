@@ -1,0 +1,7 @@
+<h1 id="image-usage">Image usage</h1>
+
+<p><img src="https://picsum.photos/640/480" alt="Nunc magna mi." /></p>
+
+<p><img src="https://picsum.photos/640/480?grayscale" alt="" /></p>
+
+<p><img src="https://picsum.photos/640/480?blur" alt="" /></p>

@@ -1,0 +1,7 @@
+<h1 id="include">Include</h1>
+
+<p>{% include &ldquo;datas/text.md&rdquo;%}</p>
+
+<h2 id="code">code</h2>
+
+<p>{% include &ldquo;datas/helloworld.go&rdquo;%}</p>

@@ -1,0 +1,28 @@
+body{
+	color: var(--body-color);
+	background-color: var(--body-background);
+}
+nav#menu-bar{
+	background-color: var(--menu-background);
+}
+nav#menu-bar a{
+	color: var(--menu-color)
+}
+
+pre, code{
+	background-color: var(--code-background);
+	color: var(--menu-color);
+}
+
+pre{
+	box-shadow: 1px 1px 5px var(--body-color);
+}
+
+table, table th, table td{
+	border-color: var(--border-color);
+}
+#format-menu, 
+#format-menu div, 
+#format-menu div>*{
+	border-color: var(--border-color);
+}

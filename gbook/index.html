@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+	<title>GBook</title>
+	<meta charset="UTF-8"/>
+	<meta name="generator" content="Powered by gBook" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="./styles/default.css" rel="stylesheet"/>
+	<link href="./styles/default-font.css" rel="stylesheet"/>
+	<link href="./styles/default-theme.css" rel="stylesheet" class="theme-change-element"
+		data-theme-default="./styles/default-theme.css"
+		data-theme-sepia="./styles/sepia-theme.css"
+		/>
+	<link href="./styles/theme.css" rel="stylesheet" />
+	<link href="./styles/libs/google-code-prettify/prettify.css" rel="stylesheet" class="theme-change-element"
+		data-theme-default="./styles/libs/google-code-prettify/prettify.css"
+		data-theme-sepia="./styles/libs/google-code-prettify/sunburst.css"
+		/>
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+	<link href="./styles/material-icons.css" rel="stylesheet" />
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="./scripts/libs/prettify.js"></script>
+	<script src="./scripts/script.js"></script>
+</head>
+<body data-size="normal" data-font="sans-serif" data-menu="open">
+	<main>
+		<nav id="menu-bar">
+			<a href="./">GBook</a>
+			<ol>
+<li><a href="./chapter-1/index.html">Chapter 1</a> </li>
+<li><a href="./chapter-2/index.html">Chapter 2</a> </li>
+<li><a href="./chapter-3/index.html">Chapter 3</a> </li>
+<li><a href="./chapter-4/index.html">Chapter 4</a> </li>
+<li>Chapter 5
+
+<ol>
+<li><a href="./chapter-5/5-1/index.html">5-1</a></li>
+<li><a href="./chapter-5/5-2/index.html">5-2</a> </li>
+</ol></li>
+</ol>
+
+		</nav>
+		<div id="main-content">
+			<nav id="icon-bar">
+				<div style="text-align: left; flex-shrink: 1; flex-grow: 1;">
+					<span id="toggle-menu" aria-label="Menu" title="Toggle Menu" class="material-icons"></span>
+				</div>
+				<div style="text-align: right;">
+					<span id="format-change" aria-label="Format change" class="material-icons text-format"></span>
+				</div>
+			</nav>
+			<div id="format-menu">
+				<div>
+					<div><span class="material-icons text-decrease"></span></div>
+					<div><span class="material-icons text-increase"></span></div>
+				</div>
+				<div>
+					<div><span id="font-change-sans-serif">Sans-Serif</span></div>
+					<div><span id="font-change-serif">Serif</span></div>
+				</div>
+				<div>
+					<div><span class="change-theme" data-target-theme="data-theme-default">Default</span></div>
+					<div><span class="change-theme" data-target-theme="data-theme-sepia">Sepia</span></div>
+				</div>
+			</div>
+			<article id="main-article"><h1 id="gitbook-sample">gitbook-sample</h1>
+
+<p>A sample gitbook</p>
+</article>
+		</div>
+	</main>
+</body>

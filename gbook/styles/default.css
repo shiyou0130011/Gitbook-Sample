@@ -1,0 +1,214 @@
+body{
+	margin: 0;
+}
+main{
+	display: flex;
+
+	width: 100vw;
+	height: 100vh;
+
+	overflow-y: hidden;
+}
+
+:root{
+	--main-content--padding: 1.5rem;
+}
+nav#menu-bar,
+#main-content{
+	overflow-y: overlay;
+	padding: 1rem var(--main-content--padding) ;
+}
+
+nav#menu-bar{
+	width: 300px;
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+#main-content{
+	width: calc(100% - 300px);
+	max-width: calc(100% - 300px);
+}
+
+#main-content pre,
+#main-content code{
+	white-space: pre-wrap;
+}
+
+#main-content pre{
+	padding: 0.25rem;
+	padding-right: 0;
+}
+
+nav#menu-bar ol{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+nav#menu-bar ol ol li{
+	padding-left: .75rem;
+}
+
+
+nav#icon-bar{
+	display: flex;
+}
+
+h1, h2, h3, h4, h5, h6, th, thead{
+	font-weight: bolder;
+}
+
+
+blockquote{
+	padding: 1rem 1.5rem;
+	margin: .25rem;
+	font-style: italic;
+	
+	position: relative;
+}
+
+blockquote::before, blockquote::after{
+	position: absolute;
+	display: block;
+	font-family: 1.25rem;
+}
+
+blockquote::before{
+	content: open-quote;
+	top: .5rem;
+	left: .5rem;
+}
+
+blockquote::after{
+	content: close-quote;
+	position: absolute;
+	right: .5rem;
+	bottom: .5rem;
+}
+
+kbd{
+	margin: 0px 0.1rem;
+	padding: 0.1rem 0.5em;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	color: #333;
+	line-height: 1.4;
+	font-family: sans-serif;
+	display: inline-block;
+	box-shadow: 0px 1px 0px rgba(0,0,0,0.2), 
+		inset 0px 0px 0px 2px #ffffff;
+	background-color: #f7f7f7;
+}
+
+table{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table, table th, table td{
+	border: 1px solid;
+}
+
+/* theme effect */
+nav#menu-bar{
+	transition-property: width, padding, margin;
+	transition-duration: .5s;	
+}
+body[data-menu="close"] nav#menu-bar{
+	width: 0;
+	padding: 0;
+	margin: 0;
+}
+body[data-menu="close"] #main-content{
+	width: 100%;
+	max-width: 100%;
+}
+/* format-menu */
+#format-menu{
+	display: none;
+	position: absolute;
+	right: var(--main-content--padding);
+}
+
+#format-menu > * {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+}
+#format-menu > * > *{
+	flex-grow: 1;
+}
+
+#format-menu{
+	--format-menu-border-width: 1px;
+	--format-menu-border-style: solid; 
+}
+#format-menu{
+	border-width: var(--format-menu-border-width);
+	border-style: var(--format-menu-border-style);
+}
+#format-menu > *:not(:last-child){
+	border-bottom-width: var(--format-menu-border-width);
+	border-bottom-style: var(--format-menu-border-style);
+}
+#format-menu > * > *:not(:last-child) {
+	border-right-width: var(--format-menu-border-width);
+	border-right-style: var(--format-menu-border-style);
+}
+
+
+/* Code Prettfy */
+ol.linenums li.L0, 
+ol.linenums li.L1, 
+ol.linenums li.L2, 
+ol.linenums li.L3, 
+ol.linenums li.L5, 
+ol.linenums li.L6, 
+ol.linenums li.L7, 
+ol.linenums li.L8, 
+ol.linenums li.L9, 
+ol.linenums li.L10 {
+	list-style: decimal;
+}
+
+/* Nav Menu list, from scss/nav-list.scss */
+nav#menu-bar {
+	counter-reset: nav-1;
+}
+nav#menu-bar li {
+	list-style: none;
+}
+nav#menu-bar li:before {
+	font-size: 0.75rem;
+	vertical-align: text-top;
+}
+nav#menu-bar > ol > li:before {
+	counter-reset: nav-2 nav-3 nav-4 nav-5 nav-6;
+	counter-increment: nav-1;
+	content: counter(nav-1) "." " ";
+}
+nav#menu-bar > ol > li > ol > li:before {
+	counter-reset: nav-3 nav-4 nav-5 nav-6;
+	counter-increment: nav-2;
+	content: counter(nav-1) "." counter(nav-2) "." " ";
+}
+nav#menu-bar > ol > li > ol > li > ol > li:before {
+	counter-reset: nav-4 nav-5 nav-6;
+	counter-increment: nav-3;
+	content: counter(nav-1) "." counter(nav-2) "." counter(nav-3) "." " ";
+}
+nav#menu-bar > ol > li > ol > li > ol > li > ol > li:before {
+	counter-reset: nav-5 nav-6;
+	counter-increment: nav-4;
+	content: counter(nav-1) "." counter(nav-2) "." counter(nav-3) "." counter(nav-4) "." " ";
+}
+nav#menu-bar > ol > li > ol > li > ol > li > ol > li > ol > li:before {
+	counter-reset: nav-6;
+	counter-increment: nav-5;
+	content: counter(nav-1) "." counter(nav-2) "." counter(nav-3) "." counter(nav-4) "." counter(nav-5) "." " ";
+}
+nav#menu-bar > ol > li > ol > li > ol > li > ol > li > ol > li > ol > li:before {
+	counter-reset: nav-7 nav-6;
+	counter-increment: nav-6;
+	content: counter(nav-1) "." counter(nav-2) "." counter(nav-3) "." counter(nav-4) "." counter(nav-5) "." counter(nav-6) "." " ";
+}
