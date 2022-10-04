@@ -1,0 +1,111 @@
+name: auto-generate-book
+on:                               
+  push:
+    branches:
+    - main
+
+jobs:
+  generate-gitbook:
+    runs-on: ubuntu-latest
+        
+    steps:                          
+    - name: checkout main
+      uses: actions/checkout@v2
+      with:
+        ref: main
+            
+    - name: install nodejs
+      uses: actions/setup-node@v1
+      
+    - name: configue gitbook
+      run: |
+        npm install -g gitbook-cli          
+        gitbook install
+        npm install -g gitbook-summary
+                
+    - name: generate book folder
+      run: |
+        book sm
+        gitbook build
+        rm -rf ./_book/.github/workflows
+
+    - run: mv _book /tmp/book
+
+    - name: checkout gh-pages
+      uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+
+    - name: move book bsck to repository folder
+      run: |
+        git rm -r book/*
+        rm -rf book
+        mv /tmp/book $PWD
+        
+    
+    - name: copy book data
+      env:
+        TOKEN: ${{secrets.ACCESS_TOKEN}}
+        REF: github.com/${{github.repository}}
+        MYEMAIL: ${{secrets.EMAIL}} # E-Mail 不公開，存於 Actions secrets
+        MYNAME: ${{github.repository_owner}}   
+      run: |
+        git config --global user.email "${MYEMAIL}"
+        git config --global user.name "${MYNAME}"
+        git add *
+        git commit -m "update book (Commit: ${{ github.event.head_commit.id }}; Message: ${{ github.event.head_commit.message }}) at `date`"
+        git push --force --quiet "https://${TOKEN}@${REF}" 
+
+
+  generate-gbook:
+    needs: generate-gitbook
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Go
+      uses: actions/setup-go@v3
+      with:
+        go-version: 1.18
+        
+    - name: get GBook
+      run: |
+        git clone https://github.com/shiyou0130011/gbook.git $RUNNER_TEMP/_gbook
+        cd $RUNNER_TEMP/_gbook
+        go get
+        go build -o $RUNNER_TEMP/gbook-cli exec/gbook/main.go 
+        cd $GITHUB_ACTION_PATH
+    
+    - name: checkout source
+      uses: actions/checkout@v2
+      with:
+        ref: main
+
+    - name: Build
+      run: $RUNNER_TEMP/gbook-cli -f $PWD -out "$RUNNER_TEMP/gbook" -title "Gitbook Sample"
+        
+
+    - name: checkout gh-pages
+      uses: actions/checkout@v2
+      with:
+        ref: gh-pages
+        
+    - name: remove old folder
+      run: rm -rf "$PWD/gbook"
+      
+    - name: Move compiled file
+      run:  mv $RUNNER_TEMP/gbook $PWD
+      
+    
+    - name: copy book data
+      env:
+        TOKEN: ${{secrets.ACCESS_TOKEN}}
+        REF: github.com/${{github.repository}}
+        MYEMAIL: ${{secrets.EMAIL}} # E-Mail 不公開，存於 Actions secrets
+        MYNAME: ${{github.repository_owner}}   
+      run: |
+        git config --global user.email "${MYEMAIL}"
+        git config --global user.name "${MYNAME}"
+        git add *
+        git commit -m "update book (GBook; Commit: ${{ github.event.head_commit.id }}; Message: ${{ github.event.head_commit.message }}) at `date`"
+        git push --force --quiet "https://${TOKEN}@${REF}" 
