@@ -91,7 +91,7 @@ jobs:
         ref: gh-pages
         
     - name: remove old folder
-      run: rm -rf "$GITHUB_ACTION_PATH/gbook"
+      run: rm -rf "$PWD/gbook"
       
     - name: Move compiled file
       run:  mv $RUNNER_TEMP/gbook $PWD
