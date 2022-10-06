@@ -51,7 +51,7 @@ jobs:
         git config --local user.email 'action@github.com'
         git config --local user.name 'GitHub Action'
         git add *
-        git commit -m "Update gitbook (Commit: ${{ github.event.head_commit.id }}) -m "Message: ${{ github.event.head_commit.message }})" -m "at `date`"
+        git commit -m "Update gitbook (Commit: ${{ github.event.head_commit.id }})" -m "Message: ${{ github.event.head_commit.message }})" -m "at `date`"
         git push --force --quiet "https://${TOKEN}@${REF}" 
 
 
@@ -103,5 +103,5 @@ jobs:
         git config --local user.email 'action@github.com'
         git config --local user.name 'GitHub Action'
         git add *
-        git commit -m "Update gbook (Commit: ${{ github.event.head_commit.id }}) -m "Message: ${{ github.event.head_commit.message }})" -m "at `date`"
+        git commit -m "Update gbook (Commit: ${{ github.event.head_commit.id }})" -m "Message: ${{ github.event.head_commit.message }})" -m "at `date`"
         git push --force --quiet "https://${TOKEN}@${REF}" 
