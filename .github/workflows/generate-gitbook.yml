@@ -47,13 +47,11 @@ jobs:
       env:
         TOKEN: ${{secrets.ACCESS_TOKEN}}
         REF: github.com/${{github.repository}}
-        MYEMAIL: ${{secrets.EMAIL}} # E-Mail 不公開，存於 Actions secrets
-        MYNAME: ${{github.repository_owner}}   
       run: |
-        git config --global user.email "${MYEMAIL}"
-        git config --global user.name "${MYNAME}"
+        git config --local user.email 'action@github.com'
+        git config --local user.name 'GitHub Action'
         git add *
-        git commit -m "update book (Commit: ${{ github.event.head_commit.id }}; Message: ${{ github.event.head_commit.message }}) at `date`"
+        git commit -m "Update gitbook (Commit: ${{ github.event.head_commit.id }}) -m "Message: ${{ github.event.head_commit.message }})" -m "at `date`"
         git push --force --quiet "https://${TOKEN}@${REF}" 
 
 
@@ -101,11 +99,9 @@ jobs:
       env:
         TOKEN: ${{secrets.ACCESS_TOKEN}}
         REF: github.com/${{github.repository}}
-        MYEMAIL: ${{secrets.EMAIL}} # E-Mail 不公開，存於 Actions secrets
-        MYNAME: ${{github.repository_owner}}   
       run: |
-        git config --global user.email "${MYEMAIL}"
-        git config --global user.name "${MYNAME}"
+        git config --local user.email 'action@github.com'
+        git config --local user.name 'GitHub Action'
         git add *
-        git commit -m "update book (GBook; Commit: ${{ github.event.head_commit.id }}; Message: ${{ github.event.head_commit.message }}) at `date`"
+        git commit -m "Update gbook (Commit: ${{ github.event.head_commit.id }}) -m "Message: ${{ github.event.head_commit.message }})" -m "at `date`"
         git push --force --quiet "https://${TOKEN}@${REF}" 
